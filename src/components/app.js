@@ -7,7 +7,7 @@ import RootReducer from './reducer/index'
 
 import User from './user';
 
-let store = createStore(RootReducer, {'userid': 100, 'username': 'shahi', 'user_list':[]})
+let store = createStore(RootReducer, {'userid': 100, 'username': 'shahi', 'user_list':[], 'perPageRecord': 5})
 
 class App extends React.Component{
     
