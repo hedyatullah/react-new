@@ -24,7 +24,7 @@ class User extends Component {
 
     changeName(){
         //console.log(this.props.username)
-        //this.props.dispatch({type:'USER_CHANGE', 'newname': 'Hedyat Ullah'})
+        this.props.dispatch({type:'USER_CHANGE', 'newname': 'Hedyat Ullah'})
     }
 
     render(){        
