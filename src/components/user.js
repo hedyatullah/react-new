@@ -21,18 +21,23 @@ class User extends Component {
     }
 
     checkboxChecked(chk){
-        (chk) ? this.props.dispatch({
-            type:'PARENT_CHECKED',
-            checked: 'checked'
-        }) : '';
-        // if(chk == true){
-        //     //console.log('Active')
-        //     this.props.dispatch({
-        //         type:'PARENT_CHECKED',
-        //         checked: chk
-        //     })
-        // }
-        // else console.log('Not Active')
+        // (chk) ? this.props.dispatch({
+        //     type:'PARENT_CHECKED',
+        //     checked: 'checked'
+        // }) : '';
+        if(chk == true){
+            //console.log('Active')
+            this.props.dispatch({
+                type:'PARENT_CHECKED',
+                checked: 'checked'
+            })
+        }
+        else{
+            this.props.dispatch({
+                type:'PARENT_CHECKED',
+                checked: ''
+            })
+        }
     }
 
     updataData(data){        
