@@ -20,6 +20,15 @@ export default function rootReducer(state,action){
         console.log(newState)
         return newState;
     }
+    if(action.type === 'CURRENT_PAGE_CHANGE'){
+        var perPageRecord = state.perPageRecord;
+        var currentPage = action.currentPage;
+        var innitialPoint = (perPageRecord * ((currentPage +1) -1));
+        var endPoint = ((perPageRecord * (currentPage +1) -1))
+        var showData = state.backupData.slice(innitialPoint, endPoint+1)
+        newState = Object.assign({},state,{'user_list': showData, currentPage:currentPage})
+        return newState
+    }
     //console.log(state);
     return state;
 }

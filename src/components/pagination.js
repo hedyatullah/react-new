@@ -10,7 +10,12 @@ class Pagination extends Component{
         let pagination = [];
         let totalRecord = this.props.numberofPages
         for(let i=0;i<totalRecord;i++){
-            pagination.push(<li><a href="#">{i+1}</a></li>)
+            pagination.push(<li key={i}><a href="#" onClick={ (e) => {
+                this.props.dispatch({
+                    type:'CURRENT_PAGE_CHANGE',
+                    currentPage: i
+                })
+            }}>{i+1}</a></li>)
         }
         return pagination;
     }
