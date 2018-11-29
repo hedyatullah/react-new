@@ -29,6 +29,17 @@ export default function rootReducer(state,action){
         newState = Object.assign({},state,{'user_list': showData, currentPage:currentPage})
         return newState
     }
+    if(action.type === 'PARENT_CHECKED'){
+        let showData = state.user_list;
+        let checkedData = showData.map(item => {
+            item.checked = action.checked
+            return item;
+        })
+        newState = Object.assign({},state, {'user_list': checkedData})
+        console.log(newState)
+        return newState;
+    }
+
     //console.log(state);
     return state;
 }

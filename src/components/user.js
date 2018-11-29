@@ -10,6 +10,7 @@ class User extends Component {
         super();
         this.changeName = this.changeName.bind(this);
         this.updataData = this.updataData.bind(this)
+        this.checkboxChecked = this.checkboxChecked.bind(this)
     }
     componentDidMount(){
         let self = this;
@@ -17,6 +18,21 @@ class User extends Component {
         fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
         .then(json => this.updataData(json))
+    }
+
+    checkboxChecked(chk){
+        (chk) ? this.props.dispatch({
+            type:'PARENT_CHECKED',
+            checked: 'checked'
+        }) : '';
+        // if(chk == true){
+        //     //console.log('Active')
+        //     this.props.dispatch({
+        //         type:'PARENT_CHECKED',
+        //         checked: chk
+        //     })
+        // }
+        // else console.log('Not Active')
     }
 
     updataData(data){        
@@ -53,6 +69,7 @@ class User extends Component {
                             {'key':'email', 'label':'Email'}
                         ]}
                         data={this.props.user_list} 
+                        checkboxChecked={this.checkboxChecked}
                     />                                    
                     </div>
                 </div><Pagination />

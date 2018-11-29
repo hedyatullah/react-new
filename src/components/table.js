@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class Table extends Component{
+    constructor(){
+        super();
+        //this.parentChecked = this.parentChecked.bind(this);
+    }
     render(){        
         //debugger;
         // console.log(this.props.data);
@@ -10,6 +14,11 @@ class Table extends Component{
                 <table id="mytable" className="table table-bordred table-striped">                                    
                     <thead>                   
                         <tr>
+                            <th>
+                                <input type="checkbox" onChange={ (e) => {
+                                    this.props.checkboxChecked(e.target.checked)
+                                } }></input>
+                            </th>
                             {
                                 this.props.theader.map((item,key) => {
                                     return <th key={key}>{item.label}</th>
@@ -22,6 +31,7 @@ class Table extends Component{
                         {
                             this.props.data.map((user, i) => {
                                 return <tr key={i}>
+                                        <td>{(user.checked) ? <input type="checkbox" checked></input> : <input type="checkbox"></input>}</td>
                                     {
                                         this.props.theader.map((item,key) => {
                                             return(
