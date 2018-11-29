@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Table from './table'
 import Filter from './filter'
+import Pagination from './pagination'
 
 class User extends Component {
     constructor(){
@@ -54,6 +55,9 @@ class User extends Component {
                         data={this.props.user_list} 
                     />                                    
                     </div>
+                </div><Pagination />
+                <div>
+
                 </div>
             </div>
             </div>           
