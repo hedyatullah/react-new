@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './table'
+
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

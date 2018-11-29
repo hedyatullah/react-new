@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 class Table extends Component{
-    render(){
-        console.log(this.props.data)
+    render(){        
+        //debugger;
+        console.log(this.props.data);
+        console.log(this.props.theader);
         return(
             <div className="container">
 	                <div className="row">
@@ -11,25 +13,29 @@ class Table extends Component{
                             <div className="table-responsive">                                
                                 <table id="mytable" className="table table-bordred table-striped">                                    
                                     <thead>                   
-                                        <tr>                        
-                                            <th>First Name </th>
-                                            <th>Last Name </th>
-                                            <th>Address </th>
-                                            <th>Email Address</th>
-                                            <th>Contact Numbre </th>                    
+                                        <tr>
+                                            {
+                                                this.props.theader.map((item,key) => {
+                                                    return <th key={key}>{item.label}</th>
+                                                    
+                                                })
+                                            }                                                                                                              
                                         </tr>
                                     </thead>                    
                                     <tbody>
                                         {
-                                            this.props.data.map((item, key) => {                                               
-                                                return(<tr key={key}>
-                                                    <td>{item.id}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.username}</td>
-                                                    <td>{item.email}</td>
-                                                </tr>)                                                                                          
+                                            this.props.data.map((user, i) => {
+                                                return <tr key={i}>
+                                                    {
+                                                        this.props.theader.map((item,key) => {
+                                                            return(
+                                                                <td key={key}>{user[item.key]}</td>
+                                                            )
+                                                        })
+                                                    }
+                                                </tr>
                                             })
-                                        }                                       
+                                        }                            
                                     </tbody>
         
                                 </table>                    
