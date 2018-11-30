@@ -55,7 +55,7 @@ class User extends Component {
             <div>
                 <h2>ID: {this.props.userid}</h2>
                 <h2>Name : {this.props.username}</h2>
-                <button onClick={this.changeName()}>Change Name</button>              
+                <button onClick={this.changeName}>Change Name</button>              
             
             <div className="container">
                 <div className="row">            
