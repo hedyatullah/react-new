@@ -56,15 +56,20 @@ export default function rootReducer(state,action){
         let showData = Object.assign([],state.user_list);
         let colval = action.colval;
         let searchval = action.searchval.toString();
+        
+        let searchData = [];
         showData.map((item) => {
-            //console.log(item[colval])
+            //console.log(typeof item[colval])
             //console.log(item[searchval])
-            if((item[colval].indexOf(searchval)) > -1){
+            
+            if((item[colval].toString().indexOf(searchval)) > -1){
                 console.log(item);
+                searchData.push(item)
             }
-            
-            
-        } )
+            return searchData;           
+            } )
+            newState = Object.assign({},state, {user_list:searchData})
+            return newState;
         //console.log(colval)
     }  
 
