@@ -55,7 +55,7 @@ export default function rootReducer(state,action){
     if(action.type === 'SEARCH'){
         let showData = Object.assign([],state.user_list);
         let colval = action.colval;
-        let searchval = (action.searchval).toString();
+        let searchval = action.searchval.toString();
         showData.map((item) => {
             //console.log(item[colval])
             //console.log(item[searchval])
