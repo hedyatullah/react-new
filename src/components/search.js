@@ -17,6 +17,7 @@ class Search extends Component {
                     
                     if(e.key == 'Enter'){
                         this.props.searching(e.target.value,this.refs.select_val.value)
+                        e.target.value = '';
                     }
                 }}/>
                 <span className="input-group-btn">

@@ -56,7 +56,7 @@ export default function rootReducer(state,action){
         let showData = Object.assign([],state.user_list);
         let colval = action.colval;
         let searchval = action.searchval.toString();
-        
+        let count = 0;
         let searchData = [];
         showData.map((item) => {
             //console.log(typeof item[colval])
@@ -65,10 +65,13 @@ export default function rootReducer(state,action){
             if((item[colval].toString().indexOf(searchval)) > -1){
                 console.log(item);
                 searchData.push(item)
+                count++;
             }
             return searchData;           
             } )
-            newState = Object.assign({},state, {user_list:searchData})
+            let totalcount = count / state.perPageRecord
+            console.log(Math.round(totalcount));
+            newState = Object.assign({},state, {user_list:searchData, numberofPages: totalcount})
             return newState;
         //console.log(colval)
     }  

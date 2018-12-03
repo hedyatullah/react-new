@@ -27,8 +27,7 @@ class User extends Component {
         //console.log(val,selectval)
         let colval = val;
         let searchval = selectval;
-
-
+        
         this.props.dispatch({
             type: 'SEARCH',
             colval: colval,
