@@ -30,15 +30,43 @@ export default function rootReducer(state,action){
         return newState
     }
     if(action.type === 'PARENT_CHECKED'){
-        let showData = state.user_list;
+        let showData = Object.assign([], state.user_list);
         let checkedData = showData.map(item => {
             item.checked = action.checked
             return item;
         })
-        newState = Object.assign({},state, {'user_list': checkedData})
+        newState = Object.assign({},state, {'user_list': checkedData, parentChkStatus: action.checked})
         console.log(newState)
         return newState;
     }
+    if(action.type === 'CHILD_CHECKED'){
+        let showData = Object.assign([], state.user_list);
+        showData[action.position].checked = action.chkStatus;
+
+        var totalChecked = 0;
+        showData.map((user) => {
+            if (user.checked) {
+                totalChecked++;
+            }
+        });
+        newState = Object.assign({},state, {user_list: showData, parentChkStatus: (totalChecked == showData.length)});
+        return newState;
+    }  
+    if(action.type === 'SEARCH'){
+        let showData = Object.assign([],state.user_list);
+        let colval = action.colval;
+        let searchval = (action.searchval).toString();
+        showData.map((item) => {
+            //console.log(item[colval])
+            //console.log(item[searchval])
+            if((item[colval].indexOf(searchval)) > -1){
+                console.log(item);
+            }
+            
+            
+        } )
+        //console.log(colval)
+    }  
 
     //console.log(state);
     return state;

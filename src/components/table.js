@@ -17,7 +17,7 @@ class Table extends Component{
                             <th>
                                 <input type="checkbox" onChange={ (e) => {
                                     this.props.checkboxChecked(e.target.checked)
-                                } }></input>
+                                } } checked={this.props.parentChkStatus}></input>
                             </th>
                             {
                                 this.props.theader.map((item,key) => {
@@ -31,7 +31,9 @@ class Table extends Component{
                         {
                             this.props.data.map((user, i) => {
                                 return <tr key={i}>
-                                        <td>{(user.checked) ? <input type="checkbox" checked></input> : <input type="checkbox"></input>}</td>
+                                        <td><input type="checkbox" checked={user.checked} onChange={(e) => {
+                                            this.props.childCheckboxChecked(e.target.checked, i)
+                                        }}></input></td>
                                     {
                                         this.props.theader.map((item,key) => {
                                             return(

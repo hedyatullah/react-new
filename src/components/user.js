@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Table from './table'
 import Filter from './filter'
 import Pagination from './pagination'
+import Search from './search'
 
 class User extends Component {
     constructor(){
@@ -11,6 +12,8 @@ class User extends Component {
         this.changeName = this.changeName.bind(this);
         this.updataData = this.updataData.bind(this)
         this.checkboxChecked = this.checkboxChecked.bind(this)
+        this.childCheckboxChecked = this.childCheckboxChecked.bind(this)
+        this.searching = this.searching.bind(this)
     }
     componentDidMount(){
         let self = this;
@@ -19,25 +22,51 @@ class User extends Component {
         .then(response => response.json())
         .then(json => this.updataData(json))
     }
+    
+    searching(selectval,val){
+        //console.log(val,selectval)
+        let colval = val;
+        let searchval = selectval;
+
+
+        this.props.dispatch({
+            type: 'SEARCH',
+            colval: colval,
+            searchval: searchval
+        })
+    }
 
     checkboxChecked(chk){
-        // (chk) ? this.props.dispatch({
-        //     type:'PARENT_CHECKED',
-        //     checked: 'checked'
-        // }) : '';
-        if(chk == true){
-            //console.log('Active')
+        
             this.props.dispatch({
                 type:'PARENT_CHECKED',
-                checked: 'checked'
+                checked: chk
             })
-        }
-        else{
-            this.props.dispatch({
-                type:'PARENT_CHECKED',
-                checked: ''
-            })
-        }
+        
+    }
+    childCheckboxChecked(chk, position){
+        console.log(chk);
+        this.props.dispatch({
+                    type:'CHILD_CHECKED',
+                    childChecked: 'checked',
+                    position: position,
+                    chkStatus: chk
+                });
+        //console.log(user);
+        // if(chk == true){
+        //     this.props.dispatch({
+        //         type:'CHILD_CHECKED',
+        //         childChecked: 'checked',
+        //         userId: userid
+        //     })
+        // }    
+        // else{
+        //     this.props.dispatch({
+        //         type:'CHILD_CHECKED',
+        //         childChecked: '',
+        //         userId: userid
+        //     })
+        // }    
     }
 
     updataData(data){        
@@ -50,31 +79,38 @@ class User extends Component {
         this.props.dispatch({type:'USER_CHANGE', 'newname': 'Hedyat Ullah'})
     }
 
-    render(){        
+    render(){     
+        let tableHeader = [
+                        {'key':'id', 'label':'ID'},
+                        {'key':'name', 'label':'Full Name'},
+                        {'key':'username', 'label':'User Name'},
+                        {'key':'email', 'label':'Email'}
+                    ]   
         return(
             <div>
-                <h2>ID: {this.props.userid}</h2>
-                <h2>Name : {this.props.username}</h2>
-                <button onClick={this.changeName}>Change Name</button>              
-            
+                ...                
             <div className="container">
                 <div className="row">            
                     <div className="col-md-2">
                         <Filter />
-                    </div>                
+                    </div>     
+                    <div className="col-md-offset-8">
+                        <Search 
+                            theader={tableHeader}
+                            searching={this.searching}
+                        />
+                    </div>           
                 </div>
                 <div className="row">
                     <div className="col-md-12">
                     <h4>Bootstrap Snipp for Datatable</h4>
                     <Table 
-                        theader={[
-                            {'key':'id', 'label':'ID'},
-                            {'key':'name', 'label':'Full Name'},
-                            {'key':'username', 'label':'User Name'},
-                            {'key':'email', 'label':'Email'}
-                        ]}
+                        theader={tableHeader}
                         data={this.props.user_list} 
                         checkboxChecked={this.checkboxChecked}
+                        childCheckboxChecked={this.childCheckboxChecked}
+                        parentChkStatus={this.props.parentChkStatus}
+
                     />                                    
                     </div>
                 </div><Pagination />
@@ -90,7 +126,8 @@ const mapStatetoProps = (state) => {
     return{
         userid: state.userid,
         username: state.username,
-        user_list: state.user_list
+        user_list: state.user_list,
+        parentChkStatus: state.parentChkStatus
     }
 }
 export default connect(mapStatetoProps)(User);
