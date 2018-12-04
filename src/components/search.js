@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Search extends Component {
     render(){
-        console.log(this.props.theader)
+        //console.log(this.props.theader)
         return(
             <div className="input-group">
                 <select className="form-control" ref='select_val' style={{width:'120px'}}>

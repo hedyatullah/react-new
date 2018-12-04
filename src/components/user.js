@@ -87,8 +87,9 @@ class User extends Component {
                     ]   
         return(
             <div>
-                ...                
+                            
             <div className="container">
+                <h4>User Data</h4>
                 <div className="row">            
                     <div className="col-md-2">
                         <Filter />
