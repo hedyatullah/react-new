@@ -15,8 +15,8 @@ export default function rootReducer(state,action){
     if(action.type === 'POST_DATA'){
         let totalRecord = action.post_list.length;
         let numberofPages = totalRecord / state.perPageRecord;
-        let showData = action.post_list.slice(0, 10)
-        newState = Object.assign({},state,{'post_list': showData , post_bkp: action.post_list})
+        let showData = action.post_list.slice(0, state.perPageRecord)
+        newState = Object.assign({},state,{'post_list': showData , post_bkp: action.post_list, numberofPages: numberofPages})
         console.log(newState);
         return newState;
     }
@@ -24,7 +24,8 @@ export default function rootReducer(state,action){
         var totalRecord = state.backupData.length;
         var numberofPages = totalRecord / action.value
         var showData = state.backupData.slice(0, action.value)
-        newState = Object.assign({},state,{'perPageRecord': action.value, 'user_list': showData, numberofPages:numberofPages})
+        var showPostData = state.post_bkp.slice(0, action.value)
+        newState = Object.assign({},state,{'perPageRecord': action.value, 'user_list': showData, 'post_list': showPostData, numberofPages:numberofPages})
         //console.log(newState)
         return newState;
     }

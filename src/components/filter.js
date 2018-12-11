@@ -13,9 +13,10 @@ class Filter extends Component{
                         value: e.target.value
                     })
                 } }>                    
-                        <option value="2">2</option>
-                        <option value="5">5</option>        
-                        <option value="10">10</option>                                                      
+                        <option value="5">5</option>
+                        <option value="10">10</option>        
+                        <option value="50">50</option>        
+                        <option value="1000">All</option>                                                      
                 </select>
             </div>
         )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Table from './table';
 import Filter from './filter';
+import Pagination from './pagination';
 
 class Post extends Component {
     constructor(){
@@ -34,6 +35,7 @@ class Post extends Component {
                     <div className="col-md-2">
                         <Filter />
                     </div>
+                    
                     <div className="row">
                         <div className="col-md-12">
                             <Table 
@@ -42,6 +44,7 @@ class Post extends Component {
                             />
                         </div>
                     </div>
+                    <div><Pagination /></div>
                 </div>
             </div>
         )
