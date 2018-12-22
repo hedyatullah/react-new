@@ -70,7 +70,7 @@ class User extends Component {
 
     updataData(data){        
         let userdata = data;        
-        this.props.dispatch({type: 'APPEND_USER', 'user_list': userdata})
+        this.props.dispatch({type: 'APPEND_DATA', 'dataFromBkend': userdata, default: window.defaultFilterParams})
     }
 
     changeName(){
@@ -88,7 +88,7 @@ class User extends Component {
         return(
             <div>
                             
-            <div className="container">
+            <div className="">
                 <h4>User Data</h4>
                 <div className="row">            
                     <div className="col-md-2">
@@ -106,7 +106,7 @@ class User extends Component {
                     <h4>Bootstrap Snipp for Datatable</h4>
                     <Table 
                         theader={tableHeader}
-                        data={this.props.user_list} 
+                        data={this.props.dataFromBkend} 
                         checkboxChecked={this.checkboxChecked}
                         childCheckboxChecked={this.childCheckboxChecked}
                         parentChkStatus={this.props.parentChkStatus}
@@ -126,7 +126,7 @@ const mapStatetoProps = (state) => {
     return{
         userid: state.userid,
         username: state.username,
-        user_list: state.user_list,
+        dataFromBkend: state.commonData,
         parentChkStatus: state.parentChkStatus
     }
 }
