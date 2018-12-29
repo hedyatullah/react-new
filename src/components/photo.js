@@ -35,7 +35,7 @@ class Photo extends Component{
         })
     }
     render(){
-        console.log(this.props.dataFromBkend)
+        //console.log(this.props.dataFromBkend)
         let tableHeader = [
             {'key':'albumId', 'label':'Album ID'},
             {'key':'id', 'label':'ID'},

@@ -10,6 +10,7 @@ import Post from './post';
 import Comment from './comment';
 import Album from './album';
 import Photo from './photo';
+import Todo from './todos'
 
 window.defaultFilterParams = {'perPageRecord': 5, currentPage:0};
 
@@ -52,7 +53,12 @@ class App extends React.Component{
                                 this.setState({
                                     componentName: 'photo'
                                 })
-                            }}>Photo</a></div>
+                            }}>Photo |</a></div>&nbsp;
+                            <div><a href="#" onClick={ () => {
+                                this.setState({
+                                    componentName: 'todo'
+                                })
+                            }}>Todo</a></div>
                         </div>
                     </div>
                     {this.getComponent()}                    
@@ -73,7 +79,10 @@ class App extends React.Component{
         else if(this.state.componentName == 'photo'){
             return <Photo />
         }
-        return <Album />
+        else if(this.state.componentName == 'Album'){
+            return <Album />
+        }
+        return <Todo />
     }
 }
 export default App;

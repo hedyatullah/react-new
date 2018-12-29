@@ -34,7 +34,7 @@ class Album extends Component{
 
     updateData(data){
         let albumData = data;
-        console.log(this.props.dataFromBkend)
+        //console.log(this.props.dataFromBkend)
         this.props.dispatch({type:'APPEND_DATA', 'dataFromBkend': albumData, default: window.defaultFilterParams})
     }
 

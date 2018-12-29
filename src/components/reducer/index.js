@@ -30,8 +30,23 @@ export default function rootReducer(state,action){
         //console.log(newState)
         return newState;
     }
+    if(action.type === 'SORT_DATA'){
+        let backupData = state.backupData;
+        let sortCol = action.sortbyKey
+        let sortedData = backupData.sort(function(a,b){
+            return a[sortCol] == b[sortCol] ? 0 : +(a[sortCol] < b[sortCol]) || -1;
+        })
+        var perPageRecord = state.perPageRecord;
+        var currentPage = state.currentPage;
+        var innitialPoint = (perPageRecord * ((currentPage +1) -1));
+        var endPoint = ((perPageRecord * (currentPage +1) -1))
+        var showData = sortedData.slice(innitialPoint, endPoint+1)
+        newState = Object.assign({},state,{'commonData': showData,})
+        return newState
+    }
+
     if(action.type === 'CURRENT_PAGE_CHANGE'){
-        debugger;
+        //debugger;
         var perPageRecord = state.perPageRecord;
         var currentPage = action.currentPage;
         var innitialPoint = (perPageRecord * ((currentPage +1) -1));
